@@ -11,3 +11,9 @@ cesiumwidget3/labextension/
 
 # OS X
 .DS_Store
+
+.idea/
+.vscode/
+*.lock
+*package-lock.json
+*.log
