@@ -1,7 +1,10 @@
 CesiumWidget3
 ===============================
 
-A Custom Jupyter Widget Library
+An attempt to recreate the [CesiumWidget](https://github.com/petrushy/CesiumWidget) in 2021 to work with jupyterlab and updated ecosysttems.
+
+This widget is based on the [CesiumJS](https://cesium.com/cesiumjs/) geospatial visualization.
+
 
 Installation
 ------------
