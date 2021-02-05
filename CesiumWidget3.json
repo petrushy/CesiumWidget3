@@ -1,0 +1,5 @@
+{
+  "load_extensions": {
+    "CesiumWidget3/extension": true
+  }
+}
