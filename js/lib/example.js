@@ -57,6 +57,8 @@ export var HelloView = widgets.DOMWidgetView.extend({
     // Defines how the widget gets rendered into the DOM
     render: function() {
         console.log('start my render');
+        this.value_changed();
+        
         var c = Color.fromRandom();
 
         this.cesiumContainer = document.createElement("div");
@@ -70,7 +72,7 @@ export var HelloView = widgets.DOMWidgetView.extend({
         this.cesiumViewer = viewer;
         console.log(viewer);
 
-        this.value_changed();
+        
 
         // Observe changes in the value traitlet in Python, and define
         // a custom callback.
