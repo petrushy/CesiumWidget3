@@ -5,8 +5,7 @@ var version = require('./package.json').version;
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-
-var webpack = require('webpack');
+const webpack = require('webpack');
 
 // The path to the CesiumJS source code
 const cesiumSource = 'node_modules/cesium/Source';
@@ -98,7 +97,7 @@ module.exports = (env, argv) => {
                 
                 new webpack.DefinePlugin({
                     // Define relative base path in cesium for loading assets
-                    'CESIUM_BASE_URL': JSON.stringify("")
+                    'CESIUM_BASE_URL': JSON.stringify("../") //"", "./static/Cesium/", 
                 })
             ],
 
@@ -148,9 +147,13 @@ module.exports = (env, argv) => {
             //  },
 
             plugins: [
+                new HtmlWebpackPlugin({
+                    template: 'src/index.html'
+                }),
+                
                 new webpack.DefinePlugin({
                     // Define relative base path in cesium for loading assets
-                    'CESIUM_BASE_URL': JSON.stringify("")
+                    'CESIUM_BASE_URL': JSON.stringify("../")
                 }), 
                 new CopyWebpackPlugin({
                     patterns: [

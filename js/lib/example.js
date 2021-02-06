@@ -1,5 +1,7 @@
 var widgets = require('@jupyter-widgets/base');
-//import * as widgets from '@jupyter-widgets/base'
+
+// All kind of trial'n errors
+//const CESIUM_BASE_URL = 'https://localhost:5000/';
 
 //var Cesium = require('cesium/Source/Widgets/Viewer/Viewer');
 //import Cesium from 'cesium/Source/Cesium.js';
@@ -10,14 +12,17 @@ var widgets = require('@jupyter-widgets/base');
 //require('cesium/Build/Buils/Cesium.js');
 //require('./lib/Cesium/Widgets/widgets.css');
 //var Cesium = require('cesium/Cesium');
-var CESIUM_BASE_URL = 'https://localhost:5000/';
-import { Color } from 'cesium';
-//import "cesium/Widgets/widgets.css";
 
-import { Cesium3DTileset, createWorldTerrain, IonResource, Viewer } from 'cesium';
+const CESIUM_BASE_URL = 'https://cesium.com/downloads/cesiumjs/releases/1.77/Build/Cesium/';
+
+//import "cesium/Widgets/widgets.css";
+//import "cesium/Build/Cesium/Widgets/widgets.css";
 //import "cesium/Build/Cesium/Widgets/widgets.css";
 //import "./css/main.css";
 
+import * as Cesium from 'cesium';
+import { Color } from 'cesium';
+import { Cesium3DTileset, createWorldTerrain, IonResource, Viewer } from 'cesium';
 
 var _ = require('lodash');
 
@@ -57,7 +62,10 @@ export var HelloView = widgets.DOMWidgetView.extend({
     // Defines how the widget gets rendered into the DOM
     render: function() {
         console.log('start my render');
+        const CESIUM_BASE_URL = 'https://cesium.com/downloads/cesiumjs/releases/1.77/Build/Cesium/';
+
         this.value_changed();
+      
         
         var c = Color.fromRandom();
 
