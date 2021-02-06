@@ -10,9 +10,9 @@ var viewer = new Viewer('cesiumContainer', {
     terrainProvider: createWorldTerrain()
 });
 
-var tileset = new Cesium3DTileset({
-    url: IonResource.fromAssetId(40866)
-});
+//var tileset = new Cesium3DTileset({
+//    url: IonResource.fromAssetId(40866)
+//});
 
-viewer.scene.primitives.add(tileset);
-viewer.zoomTo(tileset);
+//viewer.scene.primitives.add(tileset);
+//viewer.zoomTo(tileset);
