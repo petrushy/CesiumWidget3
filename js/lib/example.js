@@ -1,4 +1,5 @@
 var widgets = require('@jupyter-widgets/base');
+import "../node_modules/cesium/Build/Cesium/Widgets/widgets.css";
 
 // All kind of trial'n errors
 //const CESIUM_BASE_URL = 'https://localhost:5000/';
@@ -13,7 +14,7 @@ var widgets = require('@jupyter-widgets/base');
 //require('./lib/Cesium/Widgets/widgets.css');
 //var Cesium = require('cesium/Cesium');
 
-const CESIUM_BASE_URL = 'https://cesium.com/downloads/cesiumjs/releases/1.77/Build/Cesium/';
+//const CESIUM_BASE_URL = 'https://cesium.com/downloads/cesiumjs/releases/1.77/Build/Cesium/';
 
 //import "cesium/Widgets/widgets.css";
 //import "cesium/Build/Cesium/Widgets/widgets.css";
@@ -62,7 +63,7 @@ export var HelloView = widgets.DOMWidgetView.extend({
     // Defines how the widget gets rendered into the DOM
     render: function() {
         console.log('start my render');
-        const CESIUM_BASE_URL = 'https://cesium.com/downloads/cesiumjs/releases/1.77/Build/Cesium/';
+        //const CESIUM_BASE_URL = 'https://cesium.com/downloads/cesiumjs/releases/1.78/Build/Cesium/'; 
 
         this.value_changed();
       

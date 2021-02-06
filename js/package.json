@@ -8,6 +8,10 @@
     "type": "git",
     "url": "https://github.com//CesiumWidget3.git"
   },
+  "resolutions": {
+    "@babel/runtime": "^7.12.5"
+  },
+  
   "keywords": [
     "jupyter",
     "widgets",
@@ -30,23 +34,23 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "@babel/helper-compilation-targets": "^7.12.13",
     "@jupyterlab/builder": "^3.0.0",
-    "babel-loader": "^8.2.2",
     "cesium": "^1",
     "copy-webpack-plugin": "^7.0.0",
     "css-loader": "^5.0.1",
     "html-webpack-plugin": "^4.5.1",
     "json-loader": "^0.5.4",
     "rimraf": "^2.6.1",
-    "strip-pragma-loader": "^1.0.0",
     "style-loader": "^2.0.0",
-    "url-loader": "^4.1.1",
-    "webpack": "^5"
+    "webpack": "^5",
+    "webpack-cli": "^4.5.0"
   },
   "dependencies": {
     "@jupyter-widgets/base": "^1.1 || ^2 || ^3 || ^4",
-    "cesium": "^1",
-    "lodash": "^4.17.4"
+    "cesium": "^1.78.0",
+    "lodash": "^4.17.4",
+    "resium": "^1.13.1"
   },
   "jupyterlab": {
     "extension": "lib/labplugin",
