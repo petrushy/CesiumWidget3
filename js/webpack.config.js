@@ -1,5 +1,3 @@
-//"use strict";
-
 var path = require('path');
 var version = require('./package.json').version;
 
@@ -17,10 +15,11 @@ const cesiumWorkers = '../Build/Cesium/Workers';
 var rules = [{
     test: /\.css$/,
     use: ['style-loader', 'css-loader']
-    }, {
-    test: /\.(png|gif|jpg|jpeg|svg|xml|json)$/,
-    type:'asset/inline'
-}];
+    } //, {
+    //test: /\.(png|gif|jpg|jpeg|svg|xml|json)$/,
+    //type:'asset/inline'
+//}
+];
 
 var plugins = [
     new HtmlWebpackPlugin({

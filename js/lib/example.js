@@ -44,12 +44,12 @@ export var HelloView = widgets.DOMWidgetView.extend({
         console.log('start my render');
         //const CESIUM_BASE_URL = 'https://cesium.com/downloads/cesiumjs/releases/1.78/Build/Cesium/'; 
 
-        //this.value_changed();
+        // this.value_changed();
 
         this.cesiumContainer = document.createElement("div");
         this.cesiumContainer.setAttribute("class", "cesiumContainer");
-        this.cesiumContainer.setAttribute('width', '100%');
-        this.cesiumContainer.setAttribute('height', '100%');
+        this.cesiumContainer.setAttribute('width', '1000');
+        this.cesiumContainer.setAttribute('height', '1000');
         this.cesiumContainer.setAttribute('padding', '0');
         this.el.appendChild(this.cesiumContainer);
         var viewer = new Viewer(this.cesiumContainer, {
