@@ -3,12 +3,6 @@ var version = require('./package.json').version;
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const webpack = require('webpack');
-
-// The path to the CesiumJS source code
-const cesiumSource = 'node_modules/cesium/Source';
-const cesiumWorkers = '../Build/Cesium/Workers';
-
 
 // Custom webpack rules are generally the same for all webpack bundles, hence
 // stored in a separate local variable.
@@ -58,19 +52,8 @@ module.exports = (env, argv) => {
                 path: path.resolve(__dirname, '..', 'cesiumwidget3', 'nbextension'),
                 libraryTarget: 'amd',
                 publicPath: '', // publicPath is set in extension.js
-                sourcePrefix: ''
             },
             devtool,
-            amd: {
-                // Enable webpack-friendly use of require in Cesium
-                toUrlUndefined: true
-            },
-            plugins: plugins,
-            module: {
-                unknownContextCritical: false,
-                rules: rules
-            },
-            
         },
         {// Bundle for the notebook containing the custom widget views and models
         //
@@ -84,29 +67,11 @@ module.exports = (env, argv) => {
                 path: path.resolve(__dirname, '..', 'cesiumwidget3', 'nbextension'),
                 libraryTarget: 'amd',
                 publicPath: '',
-
-                // Needed to compile multiline strings in Cesium
-                sourcePrefix: ''
-            },
-            amd: {
-                // Enable webpack-friendly use of require in Cesium
-                toUrlUndefined: true
             },
             devtool,
             module: {
-                unknownContextCritical: false,
                 rules: rules
             },
-            resolve: {
-                mainFields: ['module', 'main']
-            },
-
-            //resolve: {
-            //    alias: {
-            //      cesium$: 'cesium/Cesium',
-            //      cesium: 'cesium/Source'
-            //    }
-            //  },
 
             plugins: plugins,
 
@@ -132,53 +97,36 @@ module.exports = (env, argv) => {
                 path: path.resolve(__dirname, 'dist'),
                 libraryTarget: 'amd',
                 publicPath: 'https://unpkg.com/CesiumWidget3@' + version + '/dist/',
-                
-                // Needed to compile multiline strings in Cesium
-                sourcePrefix: ''
             },
             devtool,
-            amd: {
-                // Enable webpack-friendly use of require in Cesium
-                toUrlUndefined: true
-            },
+
             module: {
-                unknownContextCritical: false,
                 rules: rules
             },
-            //resolve: {
-            //    mainFields: ['module', 'main']
-            //},
-            //resolve: {
-            //    alias: {
-            //      cesium$: 'cesium/Cesium',
-            //      cesium: 'cesium/Source'
-            //    }
-            //  },
-
             plugins: plugins,
             externals: ['@jupyter-widgets/base']
         },
-        {
-            mode: "development",
-            context: __dirname,
-            entry: {
-              app: "./src/index.js",
-            },
-            output: {
-              filename: "[name].js",
-              path: path.resolve(__dirname, "dist"),
-            },
-            devtool: "eval",
-            plugins: [
-              new HtmlWebpackPlugin({
-                template: "src/index.html",
-              }),
-            ],
-            // development server options
-            devServer: {
-              contentBase: path.join(__dirname, "dist"),
-            },
-          },
+        // {
+        //     mode: "development",
+        //     context: __dirname,
+        //     entry: {
+        //       app: "./src/index.js",
+        //     },
+        //     output: {
+        //       filename: "[name].js",
+        //       path: path.resolve(__dirname, "dist"),
+        //     },
+        //     devtool: "eval",
+        //     plugins: [
+        //       new HtmlWebpackPlugin({
+        //         template: "src/index.html",
+        //       }),
+        //     ],
+        //     // development server options
+        //     devServer: {
+        //       contentBase: path.join(__dirname, "dist"),
+        //     },
+        //   },
 
         // {
         //     mode: 'development',
