@@ -11,3 +11,9 @@ https://github.com/petrushy/CesiumWidget
 https://github.com/mads-hatters/SIADS-591-Orbital-Congestion
 
 https://github.com/poliastro/czml3/tree/master/src/czml3
+
+https://github.com/bqplot/bqplot
+
+https://github.com/jupyter-widgets/pythreejs
+
+https://github.com/jupyter-widgets/ipyleaflet
