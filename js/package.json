@@ -19,8 +19,8 @@
     "jupyterlab-extension"
   ],
   "files": [
-    "lib/**/*.js",
-    "dist/*.js"
+    "lib/",
+    "dist/"
   ],
   "scripts": {
     "clean": "rimraf dist/ && rimraf ../cesiumwidget3/labextension/ && rimraf ../cesiumwidget3/nbextension",
@@ -42,13 +42,15 @@
     "cesium": "^1",
     "copy-webpack-plugin": "^7.0.0",
     "css-loader": "^5.0.2",
+    "html-webpack-include-assets-plugin": "^2.0.0",
     "html-webpack-plugin": "^4.5.1",
     "html-webpack-tags-plugin": "^3.0.0",
     "json-loader": "^0.5.7",
     "rimraf": "^2.6.1",
     "style-loader": "^2.0.0",
     "webpack": "^5.21.2",
-    "webpack-cli": "^4.5.0"
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
     "@jupyter-widgets/base": "^1.1 || ^2 || ^3 || ^4",
