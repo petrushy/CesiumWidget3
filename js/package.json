@@ -6,7 +6,7 @@
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com//CesiumWidget3.git"
+    "url": "https://github.com/petrushy/CesiumWidget3.git"
   },
   
   "keywords": [
@@ -14,7 +14,8 @@
     "widgets",
     "ipython",
     "ipywidgets",
-    "jupyterlab-extension"
+    "jupyterlab-extension",
+    "cesium"
   ],
   "files": [
     "lib/**/*.js",
@@ -45,7 +46,7 @@
   },
   "dependencies": {
     "@jupyter-widgets/base": "^1.1 || ^2 || ^3 || ^4",
-    "c137.js": "^1.78.0",
+    "c137.js": "^1",
     "lodash": "^4.17.4"
 
   },
