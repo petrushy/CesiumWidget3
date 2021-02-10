@@ -9,29 +9,13 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 var rules = [{
     test: /\.css$/,
     use: ['style-loader', 'css-loader']
-    } //, {
-    //test: /\.(png|gif|jpg|jpeg|svg|xml|json)$/,
-    //type:'asset/inline'
-//}
+    } 
 ];
 
 var plugins = [
     new HtmlWebpackPlugin({
         template: 'src/index.html'
-    })
-    
-    // new webpack.DefinePlugin({
-    //     // Define relative base path in cesium for loading assets
-    //     'CESIUM_BASE_URL': JSON.stringify("../")
-    // }), 
-    // new CopyWebpackPlugin({
-    //     patterns: [
-    //         { from: path.join(cesiumSource, cesiumWorkers), to: 'Workers' },
-    //         { from: path.join(cesiumSource, "ThirdParty"), to: 'ThirdParty' },
-    //         { from: path.join(cesiumSource, "Assets"), to: 'Assets' },
-    //         { from: path.join(cesiumSource, "Widgets"), to: 'Widgets' }
-    //     ],
-    // })
+    }) 
 ];
 
 
@@ -106,76 +90,6 @@ module.exports = (env, argv) => {
             plugins: plugins,
             externals: ['@jupyter-widgets/base']
         },
-        // {
-        //     mode: "development",
-        //     context: __dirname,
-        //     entry: {
-        //       app: "./src/index.js",
-        //     },
-        //     output: {
-        //       filename: "[name].js",
-        //       path: path.resolve(__dirname, "dist"),
-        //     },
-        //     devtool: "eval",
-        //     plugins: [
-        //       new HtmlWebpackPlugin({
-        //         template: "src/index.html",
-        //       }),
-        //     ],
-        //     // development server options
-        //     devServer: {
-        //       contentBase: path.join(__dirname, "dist"),
-        //     },
-        //   },
-
-        // {
-        //     mode: 'development',
-        //     context: __dirname,
-        //     entry: {
-        //         app: './src/index.js'
-        //     },
-        //     output: {
-        //         filename: '[name].js',
-        //         path: path.resolve(__dirname, '..', 'cesiumwidget3', 'nbextension'),
-        //     },
-        //     devtool: 'eval',
-        //     node: {
-        //         // Resolve node module use of fs
-        //         global: false,
-        //         __filename: false,
-        //         __dirname: false
-        //       },
-        //     // node: {
-        //     //     // Resolve node module use of fs
-        //     //     fs: "empty",
-        //     //     Buffer: false,
-        //     //     http: "empty",
-        //     //     https: "empty",
-        //     //     zlib: "empty"
-        //     // },
-        //     resolve: {
-        //         mainFields: ['module', 'main'],
-        //         fallback: {
-        //                 // Resolve node module use of fs
-        //                  fs: "empty",
-        //                  Buffer: false,
-        //                  http: "empty",
-        //                  https: "empty",
-        //                  zlib: "empty"
-        //              },
-        //     },
-        //     module: {
-        //         rules: rules,
-           
-        //     },
-        //     plugins: plugins,
-        
-        //     // development server options
-        //     devServer: {
-        //         contentBase: path.join(__dirname, "dist")
-        //     }
-        //}
-
-        
+       
     ];
 }
