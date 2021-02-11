@@ -1,18 +1,15 @@
-//"use strict";
-
 var path = require('path');
 var version = require('./package.json').version;
-
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
+var glob = require("glob");
 
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+//const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 
 // The path to the CesiumJS source code
 const cesiumSource = 'node_modules/cesium/Source';
 const cesiumWorkers = '../Build/Cesium/Workers';
-
 
 // Custom webpack rules are generally the same for all webpack bundles, hence
 // stored in a separate local variable.
@@ -91,8 +88,8 @@ module.exports = (env, argv) => {
                 publicPath: '', // publicPath is set in extension.js
   
             },
-            devtool: 'eval',
-            plugins: plugins,         
+            devtool: 'source-map',
+            //plugins: plugins,         
         },
         {// Bundle for the notebook containing the custom widget views and models
         //
@@ -114,7 +111,7 @@ module.exports = (env, argv) => {
                 // Enable webpack-friendly use of require in Cesium
                 // toUrlUndefined: true
             },
-            devtool: 'eval',
+            devtool: 'source-map',
             module: {
                 // unknownContextCritical: false,
                 rules: rules
@@ -149,7 +146,7 @@ module.exports = (env, argv) => {
         // by the custom widget embedder.
         //
             plugins: plugins,
-            entry: './lib/embed.js',
+            entry: ['./lib/embed.js', './src/index.js'],//.push(glob.sync("./node_modules/cesium/Source/Widget/**/*.js")),
             output: {
                 filename: 'index.js',
                 path: path.resolve(__dirname, 'dist'),
@@ -159,7 +156,7 @@ module.exports = (env, argv) => {
                 // Needed to compile multiline strings in Cesium
                 sourcePrefix: ''
             },
-            devtool: 'eval',
+            devtool: 'source-map',
             node: {
                 // Resolve node module use of fs
         
@@ -176,7 +173,13 @@ module.exports = (env, argv) => {
             },
             module: {
                 unknownContextCritical: false,
-                rules: rules
+                rules:  [{
+                    test: /\.css$/,
+                    use: ['style-loader', 'css-loader']
+                }, {
+                    test: /\.(png|gif|jpg|jpeg|svg|xml|json)$/,
+                    type:'asset'
+                }]
             },
             resolve: {
                 mainFields: ['module', 'main']
@@ -188,9 +191,24 @@ module.exports = (env, argv) => {
             //    }
             //  },
 
-            plugins: plugins,
+            plugins: [
+                // Copy Cesium Assets, Widgets, and Workers to a static directory
+                new CopyWebpackPlugin({
+                    patterns: [
+                        { from: path.join(cesiumSource, cesiumWorkers), to: 'Workers' },
+                        { from: path.join(cesiumSource, 'ThirdParty'), to: 'ThirdParty' },
+                        { from: path.join(cesiumSource, 'Assets'), to: 'Assets' },
+                        { from: path.join(cesiumSource, 'Widgets'), to: 'Widgets' }
+                    ],
+                }),
+                new webpack.DefinePlugin({
+                    // Define relative base path in cesium for loading assets
+                    CESIUM_BASE_URL: JSON.stringify('')
+                })
+            ],
             externals: ['@jupyter-widgets/base']
         },
+
 
 /*         {
             mode: 'development',
