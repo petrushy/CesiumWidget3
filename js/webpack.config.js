@@ -89,7 +89,7 @@ module.exports = (env, argv) => {
   
             },
             devtool: 'source-map',
-            //plugins: plugins,         
+            plugins: plugins,         
         },
         {// Bundle for the notebook containing the custom widget views and models
         //
@@ -105,16 +105,23 @@ module.exports = (env, argv) => {
                 publicPath: '',
 
                 // Needed to compile multiline strings in Cesium
-                // sourcePrefix: ''
+                sourcePrefix: ''
             },
             amd: {
                 // Enable webpack-friendly use of require in Cesium
-                // toUrlUndefined: true
+                toUrlUndefined: true
             },
             devtool: 'source-map',
             module: {
                 // unknownContextCritical: false,
                 rules: rules
+            },
+            node: {
+                // Resolve node module use of fs
+        
+                global: false,
+                __filename: false,
+                __dirname: false
             },
             resolve: {
                 mainFields: ['module', 'main']
@@ -127,7 +134,7 @@ module.exports = (env, argv) => {
             //    }
             //  },
 
-            // plugins: plugins,
+            plugins: plugins,
 
             externals: ['@jupyter-widgets/base']
         },
@@ -201,10 +208,10 @@ module.exports = (env, argv) => {
                         { from: path.join(cesiumSource, 'Widgets'), to: 'Widgets' }
                     ],
                 }),
-                new webpack.DefinePlugin({
-                    // Define relative base path in cesium for loading assets
-                    CESIUM_BASE_URL: JSON.stringify('')
-                })
+                //new webpack.DefinePlugin({
+                //    // Define relative base path in cesium for loading assets
+                //    CESIUM_BASE_URL: JSON.stringify('')
+                //})
             ],
             externals: ['@jupyter-widgets/base']
         },
