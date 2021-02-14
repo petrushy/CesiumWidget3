@@ -48,6 +48,7 @@
     "json-loader": "^0.5.7",
     "rimraf": "^2.6.1",
     "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
     "webpack": "^5.21.2",
     "webpack-cli": "^4.5.0",
     "webpack-dev-server": "^3.11.2"
@@ -61,6 +62,7 @@
   "jupyterlab": {
     "extension": "lib/labplugin",
     "outputDir": "../cesiumwidget3/labextension",
+    "webpackConfig": "./webpack-additions.config.js",
     "sharedPackages": {
       "@jupyter-widgets/base": {
         "bundled": false,

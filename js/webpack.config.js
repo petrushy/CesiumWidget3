@@ -18,7 +18,8 @@ var rules = [{
     use: ['style-loader', 'css-loader']
     }, {
     test: /\.(png|gif|jpg|jpeg|svg|xml|json)$/,
-    type:'asset/inline'},
+    loader: "url-loader",
+    type:'asset/resource'},
     // { test: /\.json$/, loader: 'json-loader' },
     //{ test: /\.js$/, loader: 'babel-loader', query: {presets: ['es2015', 'stage-0']}, exclude: /node_modules/ }
     // {
@@ -153,7 +154,7 @@ module.exports = (env, argv) => {
         // by the custom widget embedder.
         //
             plugins: plugins,
-            entry: ['./lib/embed.js', './src/index.js'],//.push(glob.sync("./node_modules/cesium/Source/Widget/**/*.js")),
+            entry: ['./lib/embed.js', './src/index.js', 'cesium' ],//.push(glob.sync("./node_modules/cesium/Source/Widget/**/*.js")),
             output: {
                 filename: 'index.js',
                 path: path.resolve(__dirname, 'dist'),
@@ -180,13 +181,7 @@ module.exports = (env, argv) => {
             },
             module: {
                 unknownContextCritical: false,
-                rules:  [{
-                    test: /\.css$/,
-                    use: ['style-loader', 'css-loader']
-                }, {
-                    test: /\.(png|gif|jpg|jpeg|svg|xml|json)$/,
-                    type:'asset'
-                }]
+                rules: rules,
             },
             resolve: {
                 mainFields: ['module', 'main']

@@ -21,7 +21,7 @@ import "../node_modules/cesium/Source/Widgets/widgets.css"
 //import "cesium/Build/Cesium/Widgets/widgets.css";
 //import "cesium/Build/Cesium/Widgets/widgets.css";
 //import "./css/main.css";
-window.CESIUM_BASE_URL = '';
+//window.CESIUM_BASE_URL = '';
 
 import * as Cesium from 'cesium';
 import { Color } from 'cesium';
