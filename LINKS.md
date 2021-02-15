@@ -17,3 +17,8 @@ https://github.com/bqplot/bqplot
 https://github.com/jupyter-widgets/pythreejs
 
 https://github.com/jupyter-widgets/ipyleaflet
+
+https://github.com/QuantStack/ipycytoscape/blob/7354f78a865fa7a702b08190ffd48f91f2070f7a/MANIFEST.in#L32
+
+https://github.com/QuantStack/ipycytoscape/blob/c910c03302f72f42a455d58b14b9597828b6b7bc/package.json#L12-L15
+
