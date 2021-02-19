@@ -15,7 +15,8 @@ const cesiumWorkers = '../Build/Cesium/Workers';
 // stored in a separate local variable.
 var rules = [{
     test: /\.css$/,
-    use: ['style-loader', 'css-loader']
+    use: ['style-loader', { loader: 'css-loader' }],
+    sideEffects: true
     }, {
     test: /\.(png|gif|jpg|jpeg|svg|xml|json)$/,
     loader: "url-loader",
@@ -73,6 +74,54 @@ var plugins = [
 module.exports = (env, argv) => {
     var devtool = argv.mode === 'development' ? 'source-map' : false;
     return [
+        {
+            mode: 'development',
+            context: __dirname,
+            entry: {
+                app: './src/index.js'
+            },
+            output: {
+                filename: '[name].js',
+                path: path.resolve(__dirname, 'dist'), // '..', 'cesiumwidget3', 'nbextension'),
+
+                // Needed to compile multiline strings in Cesium
+                sourcePrefix: ''
+            },
+            devtool: 'source-map',
+            node: {
+                // Resolve node module use of fs
+                global: false,
+                __filename: false,
+                __dirname: false
+              },
+            resolve: {
+                mainFields: ['module', 'main'],
+                fallback: {
+                        // Resolve node module use of fs
+                         fs: "empty",
+                         Buffer: false,
+                         http: "empty",
+                         https: "empty",
+                         zlib: "empty"
+                     },
+                     alias: {
+                        //  CesiumJS module name
+                        cesium: path.resolve(__dirname, cesiumSource)
+                    }
+            },
+            module: {
+                unknownContextCritical: false,
+                rules: rules,
+           
+            },
+            plugins: plugins,
+        
+            // development server options
+            devServer: {
+                contentBase: path.join(__dirname, "dist")
+            }
+        }, 
+
         {// Notebook extension
         //
         // This bundle only contains the part of the JavaScript that is run on
@@ -154,7 +203,7 @@ module.exports = (env, argv) => {
         // by the custom widget embedder.
         //
             plugins: plugins,
-            entry: ['./lib/embed.js', './src/index.js', 'cesium' ],//.push(glob.sync("./node_modules/cesium/Source/Widget/**/*.js")),
+            entry: ['./lib/embed.js' ],//.push(glob.sync("./node_modules/cesium/Source/Widget/**/*.js")),
             output: {
                 filename: 'index.js',
                 path: path.resolve(__dirname, 'dist'),
@@ -212,58 +261,7 @@ module.exports = (env, argv) => {
         },
 
 
-/*         {
-            mode: 'development',
-            context: __dirname,
-            entry: {
-                app: './src/index.js'
-            },
-            output: {
-                filename: '[name].js',
-                path: path.resolve(__dirname,'dist' ) //'..', 'cesiumwidget3', 'nbextension'),
-            },
-            devtool: 'eval',
-            node: {
-                // Resolve node module use of fs
-                global: false,
-                __filename: false,
-                __dirname: false
-              },
-            // node: {
-            //     // Resolve node module use of fs
-            //     fs: "empty",
-            //     Buffer: false,
-            //     http: "empty",
-            //     https: "empty",
-            //     zlib: "empty"
-            // },
-            resolve: {
-                mainFields: ['module', 'main'],
-                fallback: {
-                        // Resolve node module use of fs
-                         fs: "empty",
-                         Buffer: false,
-                         http: "empty",
-                         https: "empty",
-                         zlib: "empty"
-                     },
-                     //alias: {
-                        // CesiumJS module name
-                       // cesium: path.resolve(__dirname, cesiumSource)
-                    //}
-            },
-            module: {
-                unknownContextCritical: false,
-                rules: rules,
-           
-            },
-            plugins: plugins,
-        
-            // development server options
-            devServer: {
-                contentBase: path.join(__dirname, "dist")
-            }
-        } */
+         
 
         
     ];
