@@ -30,7 +30,7 @@ class CesiumWidget(widgets.DOMWidget):
     # It is synced back to Python from the frontend *any* time the model is touched.
     value = Unicode('Hello World!').tag(sync=True)
 
-    czml = List().tag(sync=True)
+    czml = Tuple().tag(sync=True)
     kml_url = Unicode().tag(sync=True)
     geojson = Unicode().tag(sync=True)
 

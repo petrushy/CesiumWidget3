@@ -37,7 +37,8 @@ export var CesiumModel = widgets.DOMWidgetModel.extend({
         _view_module_version : '0.1.0',
         value : 'Hello World!',
         width : '100%',
-        height : '600px'
+        height : '600px',
+        czml: []
     })
 });
 
@@ -49,13 +50,9 @@ export var CesiumView = widgets.DOMWidgetView.extend({
         console.log('start my render');
         CesiumView.__super__.render.apply(this, arguments);
 
-        //const CESIUM_BASE_URL = 'https://cesium.com/downloads/cesiumjs/releases/1.78/Build/Cesium/'; 
-
         // this.value_changed();
 
         this.cesiumContainer = document.createElement("div");
-        //this.cesiumContainer = this.cesiumContainer.uniqueId();
-        //this.cesiumId = this.cesiumContainer.id;
 
         var id = "cesiumContainer" + uniquePointer;
         uniquePointer++;
@@ -95,7 +92,6 @@ export var CesiumView = widgets.DOMWidgetView.extend({
             console.log('Illegal scene_mode received')
             }
 
-
         this.viewer = new Cesium.Viewer(this.cesiumContainer,{
             timeline: timeline,
             animation: animation,
@@ -127,8 +123,8 @@ export var CesiumView = widgets.DOMWidgetView.extend({
         this.update_kml();
         this.model.on('change:kml_url', this.update_kml, this);
 
-        this.update_geojson();
-        this.model.on( 'change:geojson', this.update_geojson, this);
+        //this.update_geojson();
+        //this.model.on( 'change:geojson', this.update_geojson, this);
 
         this.fly_to();
         this.model.on( 'change:_flyto', this.fly_to, this);
@@ -140,9 +136,6 @@ export var CesiumView = widgets.DOMWidgetView.extend({
         this.model.on( 'change:_zoomtoregion', this.zoom_to_region, this);
     },
 
-    czml_changed: function() {
-        // this.el.textContent = this.model.get('value');
-    },
     update_lightning: function() {
         var enableLighting = this.model.get('enable_lighting');
         console.log('update lighting')

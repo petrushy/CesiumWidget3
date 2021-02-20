@@ -2,7 +2,7 @@ var path = require('path');
 var version = require('./package.json').version;
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+//const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // Custom webpack rules are generally the same for all webpack bundles, hence
 // stored in a separate local variable.
@@ -13,9 +13,9 @@ var rules = [{
 ];
 
 var plugins = [
-    new HtmlWebpackPlugin({
-        template: 'src/index.html'
-    }) 
+//    new HtmlWebpackPlugin({
+//        template: 'src/index.html'
+//    }) 
 ];
 
 
