@@ -115,6 +115,8 @@ module.exports = (env, argv) => {
            
             },
             plugins: plugins,
+            externals: ['cesium'],
+
         
             // development server options
             devServer: {
@@ -136,6 +138,10 @@ module.exports = (env, argv) => {
                 path: path.resolve(__dirname, '..', 'cesiumwidget3', 'nbextension'),
                 libraryTarget: 'amd',
                 publicPath: '', // publicPath is set in extension.js
+
+                // Needed to compile multiline strings in Cesium
+                sourcePrefix: ''
+
   
             },
             devtool: 'source-map',
@@ -186,7 +192,7 @@ module.exports = (env, argv) => {
 
             plugins: plugins,
 
-            externals: ['@jupyter-widgets/base']
+            externals: ['@jupyter-widgets/base', 'cesium']
         },
         {// Embeddable CesiumWidget3 bundle
         //
@@ -257,7 +263,7 @@ module.exports = (env, argv) => {
                 //    CESIUM_BASE_URL: JSON.stringify('')
                 //})
             ],
-            externals: ['@jupyter-widgets/base']
+            externals: ['@jupyter-widgets/base', 'cesium']
         },
 
 
