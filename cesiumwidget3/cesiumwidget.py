@@ -35,8 +35,8 @@ class CesiumWidget(widgets.DOMWidget):
     geojson = Unicode().tag(sync=True)
 
     _zoomto = List(trait=Float, allow_none=True).tag(sync=True)
-    _flyto = List(sync=True, trait=Float, allow_none=True)
-    _zoomtoregion = List(sync=True, trait=Float, allow_none=True)
+    _flyto = List(trait=Float, allow_none=True).tag(sync=True)
+    _zoomtoregion = List(trait=Float, allow_none=True).tag(sync=True)
 
     animation = Bool(True).tag(sync=True)
     base_layer_picker = Bool(True).tag(sync=True)

@@ -1,3 +1,7 @@
+
+// This file is included by adding     "webpackConfig": "./webpack-additions.config.js",
+// in the package.json file..
+
 var path = require('path');
 
 

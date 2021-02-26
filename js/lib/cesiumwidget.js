@@ -136,8 +136,8 @@ export var CesiumView = widgets.DOMWidgetView.extend({
 
         this.viewer.fullscreenButton.viewModel.fullscreenElement = this.viewer.container.childNodes[0];
 
-        this.update_lightning();
-        this.model.on( 'change:enable_lightning', this.update_lightning, this);
+        this.update_lighting();
+        this.model.on( 'change:enable_lighting', this.update_lighting, this);
 
         this.update_czml();
         this.model.on( 'change:czml', this.update_czml, this);
@@ -158,7 +158,7 @@ export var CesiumView = widgets.DOMWidgetView.extend({
         this.model.on( 'change:_zoomtoregion', this.zoom_to_region, this);
 
     },
-    update_lightning: function() {
+    update_lighting: function() {
         var enableLighting = this.model.get('enable_lighting');
         console.log('update lighting')
         this.viewer.scene.globe.enableLighting = enableLighting;
