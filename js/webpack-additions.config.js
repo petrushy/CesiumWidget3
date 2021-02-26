@@ -10,6 +10,11 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const cesiumSource = 'node_modules/cesium/Source';
 const cesiumWorkers = '../Build/Cesium/Workers';
 
+const packageData = require('./package.json');
+
+// Handle the extensions.
+const jlab = packageData.jupyterlab;
+const outputDir = path.resolve(jlab.outputDir);
 
 
 var plugins = [
@@ -26,7 +31,7 @@ var plugins = [
     }),
     new webpack.DefinePlugin({
         // Define relative base path in cesium for loading assets
-        CESIUM_BASE_URL: JSON.stringify('http://localhost:8888/lab/extensions/CesiumWidget3/static/')
+        //CESIUM_BASE_URL: JSON.stringify('http://localhost:8888/lab/extensions/CesiumWidget3/static/')
     }), 
     //new HtmlWebpackTagsPlugin({ tags: ['cesium/Cesium.js', 'cesium/Widgets/widgets.css'], append: false }),
 

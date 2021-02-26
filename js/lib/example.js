@@ -1,8 +1,5 @@
 var widgets = require('@jupyter-widgets/base');
-//window.CESIUM_BASE_URL = JSON.stringify('http://localhost:8888/lab/extensions/CesiumWidget3/static/');
-
-__webpack_public_path__ = document.querySelector('body').getAttribute('data-base-url') + 'nbextensions/CesiumWidget3';
-
+window.CESIUM_BASE_URL = window.location.origin + '/lab/extensions/CesiumWidget3/static/';
 
 //import "../node_modules/cesium/Build/Cesium/Widgets/widgets.css";
 import "../node_modules/cesium/Source/Widgets/widgets.css"
